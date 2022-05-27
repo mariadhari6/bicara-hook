@@ -1,9 +1,5 @@
 import React from 'react'
 import logo from './logo.svg';
-const info = {
-  title:"",
-  youtube:""
-} 
 function Layout(props) {
   return (
     <div className="App">
