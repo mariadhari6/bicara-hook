@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 /**
  * Request Top Headline from https://newsapi.org/
  * Show loading message while fetching
@@ -7,43 +7,43 @@ import React, {useState, useEffect} from "react";
  * Complete functionality of 'Load More' & 'Refresh' button
  */
 
- const defaultNews= {
-   status: "ok",
-   totalResult: 0,
-   articles: []
- }
- const endpoint =
-   "https://newsapi.org/v2/top-headlines?country=id&apiKey=d4eef434bb2848cca69d497ef7eb2b42";
+const defaultNews = {
+  status: "ok",
+  totalResult: 0,
+  articles: []
+}
+const endpoint =
+  "https://newsapi.org/v2/top-headlines?country=us&apiKey=305f0756e63b47c3a697a42aac17373d";
 
 function NewsFeed() {
   const [news, setNews] = useState(defaultNews);
-  const [page,setPage] = useState(1)
+  const [page, setPage] = useState(1)
   const [isLoading, setLoading] = useState(false)
-  const [isError, setError] = useState(false) 
+  const [isError, setError] = useState(false)
   const [isRefresh, setRefresh] = useState(false)
   const handleRefresh = () => {
     setNews(defaultNews)
     setPage(1)
     setLoading(false)
     setRefresh(false)
-  }  
-  useEffect(()=>{
+  }
+  useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const response = await fetch(`${endpoint}&page=${page}`)  
+        const response = await fetch(`${endpoint}&page=${page}`)
         const result = await response.json()
-        setNews(current=>{
-          return(
+        setNews(current => {
+          return (
             {
               ...result,
-              articles: [...current.articles,...result.articles],
+              articles: [...current.articles, ...result.articles],
               totalResult: result.totalResult,
               status: result.status
             }
           )
         })
-        if(result.status !== "ok"){
+        if (result.status !== "ok") {
           throw new Error('error')
         }
       } catch (error) {
@@ -52,7 +52,7 @@ function NewsFeed() {
       setLoading(false)
     }
     fetchData()
-  },[page,isRefresh])
+  }, [page, isRefresh])
   return (
     <>
       <h3>Top News Headline </h3>
