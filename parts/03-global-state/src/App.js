@@ -2,7 +2,7 @@
 import React, { Component, useState, createContext, useContext } from "react";
 import "./App.css";
 import Layout from "./Layout";
-import ContextPage from "./ContextPage";
+import ContextPage from "./LatihanContextPage";
 import ReducerPage from "./ReducerPage";
 import TodoMVCRedux from "./TodoMVC-Redux";
 import TodoMVCHook from "./TodoMVC-Hook";
